@@ -1,30 +1,36 @@
-import { Nunito_900Black, useFonts } from '@expo-google-fonts/nunito';
-import { Text, View } from "react-native";
+import ScrollingItems from "@/components/ScrollingItems";
+import { woltEmojis } from "@/constants/emoji";
+import { View, StyleSheet } from "react-native";
 
 export default function Index() {
-  const [fontsLoaded] = useFonts({
-    Nunito_900Black
-  })
-  if (!fontsLoaded) {
-    return <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text>fonts not loaded</Text>
-    </View>
-  }
   return (
     <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
+      style={styles.container}
     >
-      <Text style={{ fontFamily: "Nunito_900Black" }}>Hello sourabh</Text>
+      <View style={styles.scrollContainer}>
+        {
+          woltEmojis.map((v, i) => {
+            return <ScrollingItems key={i} emojis={v} row={i} direction={Boolean(i % 2)} />
+          })
+        }
+      </View>
+      <View style={styles.authContainer} />
     </View>
   );
 }
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'green'
+  },
+  scrollContainer: {
+    flex: 0.8,
+    backgroundColor: 'red',
+    flexDirection: 'row',
+  },
+  authContainer: {
+    flex: 1,
+    backgroundColor: 'blue'
+  }
+});
+
