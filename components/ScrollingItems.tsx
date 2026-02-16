@@ -1,26 +1,29 @@
+import { useEffect, useState } from 'react';
 import { View, StyleSheet, Text, Dimensions } from 'react-native'
-import Animated, { useAnimatedRef } from 'react-native-reanimated'
+import Animated, { scrollTo, SharedValue, useAnimatedReaction, useAnimatedRef } from 'react-native-reanimated'
 
 interface ScrollingItemsProps {
   direction: boolean,
   row: number,
-  emojis: string[]
+  emojis: string[],
+  height: number,
+  scrolls: SharedValue<number>
 }
 const _cellGap = 6;
 const _listPadding = 10;
-const _cellWidth = (Dimensions.get('screen').width - (6 * _listPadding)) / 3;
+const _cellWidth = ((Dimensions.get('screen').width - (6 * _listPadding))) / 3;
 const _listHeight = 6 * _cellWidth + 5 * _cellGap + 2 * _listPadding;
-console.log(_listHeight);
 
 
-const ScrollingItems = ({ row, direction, emojis }: ScrollingItemsProps) => {
+
+const ScrollingItems = ({ row, direction, emojis, height, scrolls }: ScrollingItemsProps) => {
+  const maxScroll = _listHeight - height;
   const scrollRef = useAnimatedRef<Animated.FlatList>();
-  setTimeout(() => {
-    scrollRef.current?.scrollToOffset({
-      offset: 300,
-      animated: true
+  useAnimatedReaction(
+    () => scrolls.value,
+    (v) => {
+      scrollTo(scrollRef, 0, (direction ? 1 - v : v) * maxScroll, false)
     })
-  }, 1000)
 
   return (
     <View style={styles.container}>

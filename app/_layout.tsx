@@ -13,6 +13,7 @@ export default function RootLayout() {
   if (!fontsLoaded) {
     return null;
   }
+
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <QueryClientProvider client={queryClient}>
