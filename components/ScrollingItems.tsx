@@ -1,3 +1,4 @@
+import { Colors } from '@/constants/theme';
 import { useEffect, useState } from 'react';
 import { View, StyleSheet, Text, Dimensions } from 'react-native'
 import Animated, { scrollTo, SharedValue, useAnimatedReaction, useAnimatedRef } from 'react-native-reanimated'
@@ -13,6 +14,15 @@ const _cellGap = 6;
 const _listPadding = 10;
 const _cellWidth = ((Dimensions.get('screen').width - (6 * _listPadding))) / 3;
 const _listHeight = 6 * _cellWidth + 5 * _cellGap + 2 * _listPadding;
+const getRandomColor = (): string => {
+  let i = 0, color = "#"
+  while (i < 3) {
+
+    color += Math.floor(Math.random() * 16).toString(16)
+    i++;
+  }
+  return color
+}
 
 
 
@@ -41,7 +51,8 @@ const ScrollingItems = ({ row, direction, emojis, height, scrolls }: ScrollingIt
 
 const Emoji = ({ value }: { value: string }) => {
   return (
-    <View style={styles.emoji}>
+    <View style={[styles.emoji,
+    { backgroundColor: getRandomColor() }]}>
       <Text style={styles.emojiText}>{value}</Text>
     </View>
   )
@@ -51,8 +62,8 @@ const Emoji = ({ value }: { value: string }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ff33aa',
     width: '100%',
+    backgroundColor: Colors.muted
   },
   emojiList: {
     gap: 6,
@@ -60,11 +71,10 @@ const styles = StyleSheet.create({
   },
   emoji: {
     width: '100%',
-    backgroundColor: 'orange',
     aspectRatio: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 6,
+    borderRadius: 12,
   },
   emojiText: {
     fontSize: 48

@@ -6,6 +6,7 @@ import { View, StyleSheet, Image, Text, TouchableOpacity, Linking } from "react-
 import { useSharedValue, withTiming } from "react-native-reanimated";
 import { scheduleOnUI } from "react-native-worklets";
 import { FontAwesome, MaterialIcons } from '@expo/vector-icons'
+import { LinearGradient } from 'expo-linear-gradient'
 
 export default function Index() {
   const containerRef = useRef<View>(null)
@@ -54,6 +55,7 @@ export default function Index() {
             return <ScrollingItems key={i} emojis={v} row={i} direction={Boolean(i % 2)} height={height} scrolls={scrolls} />
           })
         }
+        <LinearGradient style={styles.blur} colors={['#ffffff00', '#00000066']} />
       </View>
       <View style={styles.authContainer} >
         <Image source={require('@/assets/images/wolt-logo.png')} style={styles.logo} />
@@ -87,7 +89,6 @@ const styles = StyleSheet.create({
   },
   scrollContainer: {
     flex: 0.8,
-    backgroundColor: 'red',
     flexDirection: 'row',
   },
   authContainer: {
@@ -144,6 +145,13 @@ const styles = StyleSheet.create({
   privacyLink: {
     color: Colors.primary,
     textDecorationLine: 'underline',
+  },
+  blur: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+    height: 100
   }
 
 });
