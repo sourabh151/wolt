@@ -55,7 +55,7 @@ export default function Index() {
             return <ScrollingItems key={i} emojis={v} row={i} direction={Boolean(i % 2)} height={height} scrolls={scrolls} />
           })
         }
-        <LinearGradient style={styles.blur} colors={['#ffffff00', '#00000066']} />
+        <LinearGradient style={styles.blur} colors={['#ffffff00', '#ffffffcc']} />
       </View>
       <View style={styles.authContainer} >
         <Image source={require('@/assets/images/wolt-logo.png')} style={styles.logo} />
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     marginHorizontal: 20,
-    width: 'auto'
+    width: 'auto',
   },
   logo: {
     objectFit: "contain",
@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    height: 100
+    height: 200
   }
 
 });

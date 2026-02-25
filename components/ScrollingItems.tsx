@@ -10,8 +10,8 @@ interface ScrollingItemsProps {
   height: number,
   scrolls: SharedValue<number>
 }
-const _cellGap = 6;
-const _listPadding = 10;
+const _cellGap = 5;
+const _listPadding = 6;
 const _cellWidth = ((Dimensions.get('screen').width - (6 * _listPadding))) / 3;
 const _listHeight = 6 * _cellWidth + 5 * _cellGap + 2 * _listPadding;
 const getRandomColor = (): string => {
@@ -63,11 +63,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: '100%',
-    backgroundColor: Colors.muted
+    backgroundColor: Colors.light
   },
   emojiList: {
-    gap: 6,
-    padding: 10,
+    gap: _cellGap,
+    padding: _listPadding,
   },
   emoji: {
     width: '100%',
