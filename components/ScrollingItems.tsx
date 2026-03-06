@@ -1,5 +1,4 @@
 import { Colors } from '@/constants/theme';
-import { useEffect, useState } from 'react';
 import { View, StyleSheet, Text, Dimensions } from 'react-native'
 import Animated, { scrollTo, SharedValue, useAnimatedReaction, useAnimatedRef } from 'react-native-reanimated'
 
