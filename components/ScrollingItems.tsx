@@ -5,7 +5,6 @@ import Animated, { scrollTo, SharedValue, useAnimatedReaction, useAnimatedRef } 
 
 interface ScrollingItemsProps {
   direction: boolean,
-  row: number,
   emojis: string[],
   height: number,
   scrolls: SharedValue<number>
@@ -26,7 +25,7 @@ const getRandomColor = (): string => {
 
 
 
-const ScrollingItems = ({ row, direction, emojis, height, scrolls }: ScrollingItemsProps) => {
+const ScrollingItems = ({ direction, emojis, height, scrolls }: ScrollingItemsProps) => {
   const maxScroll = _listHeight - height;
   const scrollRef = useAnimatedRef<Animated.FlatList>();
   useAnimatedReaction(

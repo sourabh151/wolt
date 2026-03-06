@@ -52,7 +52,7 @@ export default function Index() {
       <View style={styles.scrollContainer} ref={containerRef}>
         {
           woltEmojis.map((v, i) => {
-            return <ScrollingItems key={i} emojis={v} row={i} direction={Boolean(i % 2)} height={height} scrolls={scrolls} />
+            return <ScrollingItems key={i} emojis={v} direction={Boolean(i % 2)} height={height} scrolls={scrolls} />
           })
         }
         <LinearGradient style={styles.blur} colors={['#ffffff00', '#00000066']} />
